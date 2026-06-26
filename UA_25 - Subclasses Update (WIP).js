@@ -10,6 +10,7 @@ SourceList["UA-SU"] = {
 	url : "https://www.dndbeyond.com/sources/dnd/ua/subclasses-update/",
 };	
 
+// Add Path of the Spiritual Guardian (BARBARIAN)
 AddSubClass("barbarian", "spiritual guardian", {
 	regExpSearch: /^(?=.*(barbarian))(?=.*(spiritual))(?=.*(guardian)).*$/i,
 	subname : "Path of the Spiritual Guardian",
@@ -92,23 +93,79 @@ AddSubClass("barbarian", "spiritual guardian", {
 	}
 });
 
-/* Path of the Spiritual Guardian XUA25SU p1
-This subclass was published on October 29th, 2025.
-
-Barbarians who walk the Path of the Spiritual Guardian call upon spirits—whether bestial spirits of nature, spirits of departed ancestors, or spirits of raw elemental power—to guide and protect them. When these Barbarians rage, they contact the realm of the spirits and call on them for aid.
-
-Level 3: Spiritual Protectors XUA25SU p1
-Your Rage summons spectral warriors to your aid. While your Rage is active, when you hit a creature with a weapon or an Unarmed Strike, it becomes the target of the spirits, which cause one of the following effects of your choice.
-	Distract. Until the start of your next turn, the target has Disadvantage attack rolls against targets other than you or another Barbarian who has this feature.
-	Protect. Until the end of the target's next turn, the next time it hits a creature other than you with an attack roll, that creature has Resistance to the damage dealt by the attack.
-	Strike. The target takes an extra 1d6 damage, which can be Acid, Cold, Fire, Force, Lightning, or Thunder damage (your choice).
-
-Level 6: Spirit Shield XUA25SU p2
-Your guardian spirits can provide supernatural protection to those you defend. While your Rage is active, when another creature you can see within 30 feet of you takes damage, you can take a Reaction to reduce that damage. To determine the amount the damage is reduced by, roll a number of d6s equal to your Rage Damage bonus, and add them together.
-
-Level 10: Consult the Spirits XUA25SU p2
-You gain the ability to consult with your guardian spirits. When you do so, you cast the Augury or Clairvoyance spell, without expending a spell slot or needing Material components. Rather than creating a spherical sensor, this use of Clairvoyance invisibly summons one of your guardian spirits to the chosen location. Wisdom is your spellcasting ability for these spells.
-After you cast either spell in this way, you can't use this feature again until you finish a Short or Long Rest.
-
-Level 14: Vengeful Spirits XUA25SU p2
-When you make an attack roll with a Melee weapon as part of the Attack action and roll 18–20 on the d20, you can make one additional attack roll with the same weapon as part of that action. Once you use this feature, you can't do so again until the start of your next turn. */
+// Add Warrior of Intoxication (MONK)
+AddSubClass("monk", "intoxication", {
+	regExpSearch: /^(?=.*monk)(?=.*intoxication).*$/i,
+	subname: "Warrior of Intoxication",
+	source: [["UA-SU", 4]],
+	features: {
+    "subclassfeature3": {
+		name : "Bonus Proficiencies",
+		source : [["UA-SU", 4]],
+		minlevel : 3,
+		description : desc(["I gain proficiency in Charisma (Performance) and Brewer's Supplies"]),
+		skills: ["Performance"],
+		toolProfs: ["Brewer's supplies"],
+    },
+    "subclassfeature3.1": {
+		name : "Drunken Technique",
+		source : [["UA-SU", 4]],
+		minlevel : 3,
+		description : desc(["When I use Flurry of Blows, +10 ft speed and don't provoke Opportunity Attacks during turn"]),
+    },
+   "subclassfeature6": {
+		name: "Tipsy Sway",
+		source : [["UA-SU", 4]],
+		minlevel: 6,
+		description : "\n   " + "1 focus point: as a reaction if missed in melee, attacker instead hits other I see within 5 ft",
+		additional : "Standing up from Prone costs only 5 ft",
+		action : [["reaction", "Redirect Attack"]]
+	},
+   "subclassfeature6.1": {
+		name: "Mystic Brew",
+		source : [["UA-SU", 4]],
+		minlevel: 6,
+		description: desc([
+			"I can produce one Magical Beverage when I finish a Short/Long Rest while holding Brewer’s",
+			"Supplies. The beverage appears in a bottle or cask, and remaining beverage and container", 
+			"vanishes when the beverage is drunk, poured out, or I finish a Short/Long Rest",
+			"\u2022 Drinking a Magical Beverage. Only I can benefit from the Magical Beverage, which takes", 
+			"one minute to drink (at least one pint). The benefits last for 1 hour unless I spend 1 Focus",
+			"point when produced to enhance it to 8 hours"]),
+		additional : "see Notes page",
+		toNotesPage: [{
+        name: "Mystic Brew Magical Beverages",
+        note: [
+            "\u2022 Cinnamon Dragon. I can take a Magic action to exhale toxic flames in a 30-ft",
+			"   Cone. Each creature makes a Dex save (DC 8 + my Wis mod + my Prof Bonus)",
+			"   On a failed save, a creature takes Fire damage equal to four rolls of my Martial",
+			"   Arts die and has the Poisoned condition until the end of its next turn",
+			"   On a successful save, a creature takes half as much damage only",
+            "\u2022 Heavenly Spirit. I gain Resistance to Psychic and Radiant damage.",
+            "\u2022 Refreshing Dip. Whenever I regain Hit Points, I regain additional Hit Points",
+			"   equal to a roll of my Martial Arts die.",
+			"\n\u25C6 Master Brewer Magical Beverages (Warrior of Intoxication 11, UA-SU 5)",
+			"\u2022 Blue Lightning. Whenever I take a Reaction not making an Opportunity Attack",
+			"   or casting a spell, I can make one Unarmed Strike as part of that Reaction",
+            "\u2022 Drunkard’s Luck. I gain Heroic Inspiration if I don’t already have it",
+			"   In addition, I can give myself Heroic Inspiration when I roll Initiative without it."],
+		}],
+	},
+	"subclassfeature11": {
+		name: "Master Brewer",
+		source : [["UA-SU", 5]],
+		minlevel: 11,
+		description: desc([
+			"I learn more Mystic Brew options [see Notes page]",
+		]),
+	},
+	"subclassfeature17": {
+		name: "Intoxicated Frenzy",
+		source : [["UA-SU", 5]],
+		minlevel: 17,
+		description: desc([
+			"I can make 3 extra attacks with Flurry of Blows if each is used on a different target",
+		]),
+	},
+},
+});
